@@ -61,7 +61,7 @@ if(BUILD_LIBRARY)
   find_package(yaml-cpp REQUIRED)
 
   find_package(Boost REQUIRED
-    COMPONENTS
+    COMPONENTS system
       program_options
     )
 endif()
@@ -172,7 +172,7 @@ if(BUILD_LIBRARY)
     EXPORT
       ${PROJECT_NAME}Targets
     RUNTIME DESTINATION
-    ${CMAKE_INSTALL_BINDIR}
+      ${CMAKE_INSTALL_BINDIR}
     LIBRARY DESTINATION
       ${CMAKE_INSTALL_LIBDIR}
     ARCHIVE DESTINATION
@@ -226,15 +226,30 @@ if(BUILD_LIBRARY)
       integration-service
     EXPORT
       integration-serviceTargets
-    RUNTIME
-      DESTINATION ${BIN_INSTALL_DIR}
-    LIBRARY
-      DESTINATION ${LIB_INSTALL_DIR}
-    ARCHIVE
-      DESTINATION ${LIB_INSTALL_DIR}
+    RUNTIME DESTINATION
+      ${CMAKE_INSTALL_BINDIR}
+    LIBRARY DESTINATION
+      ${CMAKE_INSTALL_LIBDIR}
+    ARCHIVE DESTINATION
+      ${CMAKE_INSTALL_LIBDIR}
     COMPONENT
       executables
     )
+  
+  # install(
+  #   TARGETS
+  #     integration-service
+  #   EXPORT
+  #     integration-serviceTargets
+  #   RUNTIME DESTINATION
+  #     ${BIN_INSTALL_DIR}
+  #   LIBRARY DESTINATION
+  #     ${LIB_INSTALL_DIR}
+  #   ARCHIVE DESTINATION
+  #     ${LIB_INSTALL_DIR}
+  #   COMPONENT
+  #     executables
+  #   )
 
   # Install core middleware extension development tools
   install(

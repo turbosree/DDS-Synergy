@@ -23,6 +23,7 @@ cmake_minimum_required(VERSION 3.5.0 FATAL_ERROR)
 find_package(websocketpp REQUIRED)
 find_package(OpenSSL REQUIRED)
 find_package(Threads REQUIRED)
+find_package(Boost REQUIRED COMPONENTS system)
 
 set(PROJECT_NAME "WebSocketAddTwoInts")
 
@@ -47,4 +48,5 @@ target_link_libraries(${PROJECT_NAME}
     PRIVATE
         Threads::Threads
         OpenSSL::SSL
+	Boost::system
 )
