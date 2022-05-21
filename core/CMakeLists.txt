@@ -201,6 +201,14 @@ if(BUILD_LIBRARY)
       ${CMAKE_INSTALL_INCLUDEDIR}
     )
 
+  # Install example configurations
+  install(
+    DIRECTORY
+      ${CMAKE_CURRENT_LIST_DIR}/../examples/
+    DESTINATION
+      ${CMAKE_INSTALL_DATADIR}/is-core/examples/
+    )
+  
   # Install Config.cmake file
   install(
     FILES
