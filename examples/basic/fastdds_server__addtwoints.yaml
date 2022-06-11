@@ -27,7 +27,7 @@ services:
         route: dds_server,
         remap: {
             dds: {
-                topic: AddTwoIntsService
+                topic: AddTwoIntsService,
             }
         }
     }
