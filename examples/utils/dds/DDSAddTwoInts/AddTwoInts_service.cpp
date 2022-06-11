@@ -176,30 +176,43 @@ void AddTwoInts_Service::run(
         const uint32_t number,
         const uint32_t sleep)
 {
-    mutex_.lock();
-
-    if (!server_)
+//    mutex_.lock();
+    while (!stop_)
     {
-        stop_ = false;
-        std::thread thread(&AddTwoInts_Service::runThread, this, number, sleep);
-        if (0 == number)
+        if (mutex_.try_lock())
         {
-            std::cout << service_name_ << " client running. Please press enter to stop it at any time."
-                      << std::endl;
-
-            std::cin.ignore();
-            stop_ = true;
+            // Pub/Sub matched
         }
         else
         {
-            std::cout << service_name_ << " client performing " << number << " requests." << std::endl;
+            // Yet to establish communication with FastDDS SH 
+            // std::cout << service_name_ << " server running. Yet to establish communication with FastDDS SH." << std::endl;
         }
-        thread.join();
-    }
-    else
-    {
-        std::cout << service_name_ << " server running. Please press enter to stop it at any time." << std::endl;
-        std::cin.ignore();
+        std::this_thread::sleep_for(std::chrono::milliseconds(500));
+
+//        if (!server_)
+//        {
+//            stop_ = false;
+//            std::thread thread(&AddTwoInts_Service::runThread, this, number, sleep);
+//            if (0 == number)
+//            {
+//                std::cout << service_name_ << " client running. Please press enter to stop it at any time."
+//                        << std::endl;
+//
+//               std::cin.ignore();
+//                stop_ = true;
+//           }
+//            else
+//           {
+//                std::cout << service_name_ << " client performing " << number << " requests." << std::endl;
+//            }
+//            thread.join();
+//        }
+//        else
+//        {
+//            std::cout << service_name_ << " server running. Please press enter to stop it at any time." << std::endl;
+//            std::cin.ignore();
+//        }
     }
 }
 
