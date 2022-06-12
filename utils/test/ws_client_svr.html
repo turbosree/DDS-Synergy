@@ -12,7 +12,8 @@
                 if(!socket)
                 {
 		    // ws://localhost:8080
-                    var socket = new WebSocket("ws://dds.synergy/");
+		    // ws://dds.synergy/
+                    var socket = new WebSocket("ws://localhost:8080");
                 }
 
                 function restart() {
@@ -49,7 +50,8 @@
                         timer = null;
                     }
                     // advertise the new service client
-                    var sub_msg = '{"op":"advertise_service","service":"add_two_ints","request_type":"AddTwoInts_Request","reply_type":"AddTwoInts_Response"}';
+                    // var sub_msg = '{"op":"advertise_service","service":"add_two_ints","request_type":"AddTwoInts_Request","reply_type":"AddTwoInts_Response"}';
+		    var sub_msg = '{"op":"advertise_service","service":"run_shell_script","request_type":"AddTwoInts_Request","reply_type":"AddTwoInts_Response"}';
                     socket.send(sub_msg);
 
                     if(!svrTimer)
@@ -63,7 +65,8 @@
                     let b = Math.floor(Math.random() * 100);
 
                     var msg = '{"a":' + a + ',"b":' + b + '}';
-                    var sub_msg = '{"op":"call_service","service":"add_two_ints","args":' + msg + '}';
+                    //var sub_msg = '{"op":"call_service","service":"add_two_ints","args":' + msg + '}';
+		    var sub_msg = '{"op":"call_service","service":"run_shell_script","args":' + msg + '}';
                     socket.send(sub_msg);
                     
                     // Update GUI

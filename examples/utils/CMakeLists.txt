@@ -23,6 +23,7 @@ project(is-examples)
 if (BUILD_EXAMPLES OR BUILD_FASTDDS_EXAMPLES)
     add_subdirectory(dds/DDSAddTwoInts)
     add_subdirectory(dds/DDSHelloWorld)
+    add_subdirectory(dds/DDSRunShellScript)
 endif()
 
 if (BUILD_EXAMPLES OR BUILD_ROS1_EXAMPLES)
